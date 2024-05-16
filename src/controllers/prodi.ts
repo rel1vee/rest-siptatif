@@ -2,19 +2,18 @@ import logging from '../config/logging';
 import { Connect, Query } from '../config/mysql';
 import { NextFunction, Request, Response } from 'express';
 
-const NAMESPACE = 'Tugas Akhir';
+const NAMESPACE = 'Prodi';
 
-const getAllTA = async (req: Request, res: Response, next: NextFunction) => {
-    logging.info(NAMESPACE, 'Getting all TA.');
+const getAllProdi = async (req: Request, res: Response, next: NextFunction) => {
+    logging.info(NAMESPACE, 'Getting all prodi.');
 
-    
-    let query = 'SELECT mhs.nim, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.berkas, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim';
+    let query = 'SELECT * FROM prodi';
 
     Connect()
         .then((connection) => {
             Query(connection, query)
                 .then((data) => {
-                    logging.info(NAMESPACE, 'Retrieved TA: ', data);
+                    logging.info(NAMESPACE, 'Retrieved prodi: ', data);
 
                     return res.status(200).json({
                         data
@@ -43,4 +42,4 @@ const getAllTA = async (req: Request, res: Response, next: NextFunction) => {
         });
 };
 
-export default { getAllTA };
+export default { getAllProdi };

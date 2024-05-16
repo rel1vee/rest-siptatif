@@ -1,8 +1,8 @@
-import { NextFunction, Request, Response } from 'express';
 import logging from '../config/logging';
 import { Connect, Query } from '../config/mysql';
+import { NextFunction, Request, Response } from 'express';
 
-const NAMESPACE = 'Mahasiswa';
+const NAMESPACE = 'Dosen';
 
 const getAllDosen = async (req: Request, res: Response, next: NextFunction) => {
     logging.info(NAMESPACE, 'Getting all dosen.');

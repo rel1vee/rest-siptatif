@@ -3,6 +3,6 @@ import controller from '../controllers/ta';
 
 const router = express.Router();
 
-router.get('/detail-tugas-akhir', controller.getDetailTA);
+router.get('/detail-ta', controller.getAllTA);
 
 export = router;

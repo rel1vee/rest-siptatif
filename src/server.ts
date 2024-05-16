@@ -1,11 +1,11 @@
-import http from 'http';
 import express from 'express';
 import bodyParser from 'body-parser';
 import config from './config/config';
 import logging from './config/logging';
-import mahasiswaRoutes from './routes/mahasiswa';
-import dosenRoutes from './routes/dosen';
 import taRoutes from './routes/ta';
+import dosenRoutes from './routes/dosen';
+import prodiRoutes from './routes/prodi';
+import mahasiswaRoutes from './routes/mahasiswa';
 
 const NAMESPACE = 'Server';
 const app = express();
@@ -44,6 +44,7 @@ app.use((req, res, next) => {
 app.use('/api', mahasiswaRoutes);
 app.use('/api', dosenRoutes);
 app.use('/api', taRoutes);
+app.use('/api', prodiRoutes);
 
 /** Error handling */
 app.use((req, res, next) => {
@@ -54,6 +55,4 @@ app.use((req, res, next) => {
     });
 });
 
-const httpServer = http.createServer(app);
-
-httpServer.listen(config.server.port, () => logging.info(NAMESPACE, `Server is running ${config.server.hostname}:${config.server.port}`));
+app.listen(config.server.port, () => logging.info(NAMESPACE, `Server is running at http://${config.server.hostname}:${config.server.port}`));
