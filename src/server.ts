@@ -2,10 +2,9 @@ import express from "express";
 import bodyParser from "body-parser";
 import config from "./config/config";
 import logging from "./config/logging";
-import taRoutes from "./routes/ta";
-import dosenRoutes from "./routes/dosen";
-import prodiRoutes from "./routes/prodi";
 import mahasiswaRoutes from "./routes/mahasiswa";
+import dosenRoutes from "./routes/dosen";
+import taRoutes from "./routes/ta";
 
 const NAMESPACE = "Server";
 const app = express();
@@ -53,7 +52,6 @@ app.use((req, res, next) => {
 app.use("/api", mahasiswaRoutes);
 app.use("/api", dosenRoutes);
 app.use("/api", taRoutes);
-app.use("/api", prodiRoutes);
 
 /** Error handling */
 app.use((req, res, next) => {

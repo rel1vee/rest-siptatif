@@ -5,7 +5,7 @@ dotenv.config();
 const MYSQL_HOST = process.env.MYSQL_HOST || "localhost";
 const MYSQL_USER = process.env.MYSQL_USER || "root";
 const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD || "";
-const MYSQL_DATABASE = process.env.MYSQL_DATABASE || "siptatif";
+const MYSQL_DATABASE = process.env.MYSQL_DATABASE || "siptatif_db";
 
 const MYSQL = {
   host: MYSQL_HOST,
