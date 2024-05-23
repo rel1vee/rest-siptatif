@@ -1,15 +1,27 @@
-# siptatif-backend-ts
+# siptatif-backend
 
 To install dependencies:
 
 ```bash
-bun install
+npm install 
+```
+
+or
+
+```bash
+bun install 
 ```
 
 To run:
 
 ```bash
-bun dev
+npm run dev 
+```
+
+or
+
+```bash
+bun dev 
 ```
 
 This project was created using `bun init` in bun v1.1.8. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.

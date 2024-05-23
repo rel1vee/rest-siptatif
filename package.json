@@ -1,6 +1,7 @@
 {
   "name": "siptatif-backend-ts",
   "main": "dist/server.js",
+  "description": "Created with Express + TypeScript",
   "scripts": {
     "dev": "nodemon src/server.ts"
   },
