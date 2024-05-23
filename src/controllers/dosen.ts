@@ -50,7 +50,7 @@ const getDosenByNIP = async (
   logging.info(NAMESPACE, "Getting dosen by NIP.");
 
   const { nip } = req.params;
-  let query = `SELECT * FROM dosen WHERE nip = '${nip}'`;
+  let query = `SELECT * FROM dosen WHERE nip LIKE '%${nip}%'`;
 
   Connect()
     .then((connection) => {
@@ -100,7 +100,7 @@ const getDosenByGender = async (
   logging.info(NAMESPACE, "Getting dosen by gender.");
 
   const { gender } = req.params;
-  let query = `SELECT * FROM dosen WHERE jenis_kelamin = '${gender}'`;
+  let query = `SELECT * FROM dosen WHERE jenis_kelamin LIKE '%${gender}%'`;
 
   Connect()
     .then((connection) => {
@@ -159,7 +159,7 @@ const postDosen = async (req: Request, res: Response, next: NextFunction) => {
         .then((result) => {
           logging.info(NAMESPACE, "Dosen created: ", result);
 
-          return res.status(200).json({
+          return res.status(201).json({
             result,
           });
         })
@@ -199,7 +199,7 @@ const putDosen = async (req: Request, res: Response, next: NextFunction) => {
         .then((result) => {
           logging.info(NAMESPACE, "Dosen updated: ", result);
 
-          return res.status(200).json({
+          return res.status(201).json({
             result,
           });
         })

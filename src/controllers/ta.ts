@@ -48,7 +48,7 @@ const getTAById = async (req: Request, res: Response, next: NextFunction) => {
 
   const { id } = req.params;
 
-  let query = `SELECT ta.id, mhs.nim, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE id = ${id}`;
+  let query = `SELECT ta.id, mhs.nim, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE id = '${id}'`;
 
   Connect()
     .then((connection) => {
@@ -87,7 +87,7 @@ const getTAByNIM = async (req: Request, res: Response, next: NextFunction) => {
 
   const { nim } = req.params;
 
-  let query = `SELECT ta.id, mhs.nim, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE mhs.nim = ${nim}`;
+  let query = `SELECT ta.id, mhs.nim, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE mhs.nim LIKE '%${nim}%'`;
 
   Connect()
     .then((connection) => {
@@ -229,7 +229,7 @@ const postTA = async (req: Request, res: Response, next: NextFunction) => {
         .then((data) => {
           logging.info(NAMESPACE, "Inserted TA: ", data);
 
-          return res.status(200).json({
+          return res.status(201).json({
             data,
           });
         })
@@ -277,7 +277,7 @@ const putTA = async (req: Request, res: Response, next: NextFunction) => {
         .then((data) => {
           logging.info(NAMESPACE, "Updated TA: ", data);
 
-          return res.status(200).json({
+          return res.status(201).json({
             data,
           });
         })

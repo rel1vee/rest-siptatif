@@ -54,7 +54,7 @@ const getMahasiswaByNIM = async (
   logging.info(NAMESPACE, "Getting mahasiswa by NIM.");
 
   const { nim } = req.params;
-  let query = `SELECT * FROM mahasiswa WHERE nim = '${nim}'`;
+  let query = `SELECT * FROM mahasiswa WHERE nim LIKE '%${nim}%'`;
 
   Connect()
     .then((connection) => {
@@ -108,7 +108,7 @@ const getMahasiswaByGender = async (
   logging.info(NAMESPACE, "Getting mahasiswa by gender.");
 
   const { gender } = req.params;
-  let query = `SELECT * FROM mahasiswa WHERE jenis_kelamin = '${gender}'`;
+  let query = `SELECT * FROM mahasiswa WHERE jenis_kelamin LIKE '%${gender}%'`;
 
   Connect()
     .then((connection) => {
@@ -171,7 +171,7 @@ const postMahasiswa = async (
         .then((result) => {
           logging.info(NAMESPACE, "Mahasiswa created: ", result);
 
-          return res.status(200).json({
+          return res.status(201).json({
             result,
           });
         })
@@ -215,7 +215,7 @@ const putMahasiswa = async (
         .then((result) => {
           logging.info(NAMESPACE, "Mahasiswa updated: ", result);
 
-          return res.status(200).json({
+          return res.status(201).json({
             result,
           });
         })
