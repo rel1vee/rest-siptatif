@@ -8,7 +8,7 @@ const getAllTA = async (req: Request, res: Response, next: NextFunction) => {
   logging.info(NAMESPACE, "Getting all TA.");
 
   let query =
-    "SELECT ta.id, mhs.nim, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim";
+    "SELECT ta.id, mhs.nim, ta.tanggal, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim";
 
   Connect()
     .then((connection) => {
@@ -48,7 +48,7 @@ const getTAById = async (req: Request, res: Response, next: NextFunction) => {
 
   const { id } = req.params;
 
-  let query = `SELECT ta.id, mhs.nim, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE id = '${id}'`;
+  let query = `SELECT ta.id, mhs.nim, ta.tanggal, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE id = '${id}'`;
 
   Connect()
     .then((connection) => {
@@ -87,7 +87,7 @@ const getTAByNIM = async (req: Request, res: Response, next: NextFunction) => {
 
   const { nim } = req.params;
 
-  let query = `SELECT ta.id, mhs.nim, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE mhs.nim LIKE '%${nim}%'`;
+  let query = `SELECT ta.id, mhs.nim, ta.tanggal, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE mhs.nim LIKE '%${nim}%'`;
 
   Connect()
     .then((connection) => {
@@ -130,7 +130,7 @@ const getTAByCategory = async (
 
   const { category } = req.params;
 
-  let query = `SELECT ta.id, mhs.nim, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE kategori = "${category}"`;
+  let query = `SELECT ta.id, mhs.nim, ta.tanggal, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE kategori = "${category}"`;
 
   Connect()
     .then((connection) => {
@@ -173,7 +173,7 @@ const getTAByStatus = async (
 
   const { status } = req.params;
 
-  let query = `SELECT ta.id, mhs.nim, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE status = "${status}"`;
+  let query = `SELECT ta.id, mhs.nim, ta.tanggal, mhs.nama, ta.judul as judul_ta, ta.kategori, ta.pembimbing_1, ta.pembimbing_2, ta.penguji_1, ta.penguji_2, ta.status FROM ta JOIN mahasiswa mhs ON ta.nim = mhs.nim WHERE status = "${status}"`;
 
   Connect()
     .then((connection) => {
@@ -219,9 +219,11 @@ const postTA = async (req: Request, res: Response, next: NextFunction) => {
     penguji_1,
     penguji_2,
     status,
+    tanggal,
+    berkas
   } = req.body;
 
-  let query = `INSERT INTO ta (nim, judul, kategori, pembimbing_1, pembimbing_2, penguji_1, penguji_2, status) VALUES ("${nim}", "${judul_ta}", "${kategori}", "${pembimbing_1}", "${pembimbing_2}", "${penguji_1}", "${penguji_2}", "${status}")`;
+  let query = `INSERT INTO ta (nim, judul, kategori, pembimbing_1, pembimbing_2, penguji_1, penguji_2, status, tanggal, berkas) VALUES ("${nim}", "${judul_ta}", "${kategori}", "${pembimbing_1}", "${pembimbing_2}", "${penguji_1}", "${penguji_2}", "${status}", "${tanggal}", "${berkas}" )`;
 
   Connect()
     .then((connection) => {

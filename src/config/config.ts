@@ -22,9 +22,12 @@ const SERVER = {
   port: SERVER_PORT,
 };
 
+const JWT_SECRET = process.env.JWT_SECRET || "3b8e2f8e5b8e2f8e5b8e2f8e5b8e2f8e5b8e2f8e5b8e2f8e5b8e2f8e5b8e2f8e";
+
 const config = {
   mysql: MYSQL,
   server: SERVER,
+  jwtSecret: JWT_SECRET,
 };
 
 export default config;

@@ -5,6 +5,7 @@ import logging from "./config/logging";
 import mahasiswaRoutes from "./routes/mahasiswa";
 import dosenRoutes from "./routes/dosen";
 import taRoutes from "./routes/ta";
+import authRoutes from "./routes/auth";
 
 const NAMESPACE = "Server";
 const app = express();
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 app.use("/api", mahasiswaRoutes);
 app.use("/api", dosenRoutes);
 app.use("/api", taRoutes);
+app.use("/api/auth", authRoutes);
 
 /** Error handling */
 app.use((req, res, next) => {
