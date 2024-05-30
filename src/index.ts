@@ -50,6 +50,7 @@ app.use((req, res, next) => {
 });
 
 /** Routes go here */
+app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use("/api", mahasiswaRoutes);
 app.use("/api", dosenRoutes);
 app.use("/api", taRoutes);

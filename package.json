@@ -1,9 +1,9 @@
 {
   "name": "siptatif-backend-ts",
-  "main": "dist/server.js",
+  "main": "dist/index.js",
   "description": "Created with Express + TypeScript",
   "scripts": {
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/index.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
